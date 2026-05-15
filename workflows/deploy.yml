@@ -1,0 +1,11 @@
+name: My first Actions
+on:
+push:
+jobs:
+first-job:
+runs-on: ubuntu-latest
+steps:
+-name: print welcome message
+run: echo "Hello Devops"
+-name: List repo files
+run: ls -la
