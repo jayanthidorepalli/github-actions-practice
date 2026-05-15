@@ -8,15 +8,15 @@ strategy:
 matrix:
 node-version: [18, 20]
 steps:
--name: Checkout Repo
-uses: actions/checkout@v
--name: Adding Node
+- name: Checkout Repo
+uses: actions/checkout@v4
+- name: Adding Node
 uses: actions/setup-node@v6
 with:
 node-version: ${{matrix.node-version}}
--name: print welcome message
+- name: print welcome message
 run: echo "Hello Devops"
--name: Print Node Version
+- name: Print Node Version
 run: node -v
--name: List repo files
+- name: List repo files
 run: ls -la
