@@ -20,20 +20,19 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Print Welcome Message
-        run: echo "Hello DevOps"
+      - name: Cache npm packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: npm-cache-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            npm-cache-${{ runner.os }}-
+
+      - name: Install Dependencies
+        run: npm install
 
       - name: Print Node Version
         run: node -v
 
-      - name: List Repo Files
-        run: ls -la
-      - name: Cache npm packages
-        uses: actions/cache@v4
-        with:
-         path: ~/.npm
-         key: npm-cache-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
-         restore-keys:
-           npm-cache-${{runner.os}}-
-      - name: print message
+      - name: Print Message
         run: echo "Caching Demo"
