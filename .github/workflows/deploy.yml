@@ -28,3 +28,12 @@ jobs:
 
       - name: List Repo Files
         run: ls -la
+      - name: Cache npm packages
+        uses: actions/cache@v4
+        with:
+         path: ~/.npm
+         key: npm-cache-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+         restore-keys:
+           npm-cache-${{runner.os}}-
+      - name: print message
+        run: echo "Caching Demo"
